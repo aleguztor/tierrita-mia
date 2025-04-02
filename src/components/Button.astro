@@ -1,0 +1,38 @@
+---
+interface Props {
+  id: string
+  type?: 'link' | 'button' | 'icon'
+  text?: string
+  link: string
+}
+const { id, type = 'button', text, link } = Astro.props
+---
+
+<a href={link} id={id} class={type}><slot />{text}</a>
+
+<style>
+  .link {
+  }
+  .button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 2px;
+    background-color: var(--link);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--primary);
+    max-height: 50px;
+  }
+  .button:hover {
+    background-color: var(--primary);
+    color: var(--link);
+  }
+</style>
+<script define:vars={{ link, id }}>
+  const button = document.getElementById(id)
+  if (button) {
+    button.addEventListener('click', () => (window.location.href = link))
+  }
+</script>

@@ -1,11 +1,76 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro'
+import Carousel from '../components/Carousel.astro'
+import Layout from '../layouts/Layout.astro'
+import waIcon from '../assets/waIcon.png'
+import { Image } from 'astro:assets'
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <header>
+    <Carousel />
+    <section id="historia">
+      <h1 transition:name="name-site">TIERRITA MÍA</h1>
+      <!-- <p style="max-width: 75ch; color: var(--link);">
+        En el corazón de Torre del Mar, donde el mar besa la arena y las noches tienen su propia banda sonora, nació
+        Tierrita Mía. Más que un bar, es un punto de encuentro para quienes buscan buena música, cócteles innovadores y
+        un ambiente que te hace sentir como en casa desde el primer sorbo. <br /> Detrás de este proyecto están Pepe y María,
+        amantes de la buena vida y apasionados por la hospitalidad. Su sueño siempre fue crear un espacio donde cada cliente
+        viviera una experiencia única, combinando lo mejor de la coctelería moderna con la esencia vibrante de Torre del
+        Mar.
+        <br /> Desde su apertura, Tierrita Mía ha sido un refugio para locales y viajeros, donde cada noche es diferente
+        y cada trago cuenta una historia. Aquí, las luces tenues, la decoración contemporánea y la música cuidadosamente
+        seleccionada crean el escenario perfecto para disfrutar sin prisas. <br /> Ya sea que vengas por un cóctel de autor,
+        una charla con amigos o simplemente a disfrutar de la brisa marina con un buen vino en la mano, en Tierrita Mía siempre
+        hay un rincón esperándote. Bienvenidos a nuestra historia. <br /> ¿Nos tomamos algo? 🍸✨
+      </p> -->
+      <p>
+        "Cada bocado es un viaje a las recetas de la abuela, donde el sabor del mar se encuentra con la tradición.
+        Pescado fresco, cariño en cada plato y el auténtico sabor de nuestra tierra."
+      </p>
+      <div id="buttonsInit">
+        <Button id="llamar" text="Llamar" type="button" link="/contacto" />
+        <Button id="localizacion" type="button" link="/localizacion">
+          <Image width={50} style={{ height: '100%', width: 'auto' }} src={waIcon} alt={'whatsapp'} />
+        </Button>
+      </div>
+    </section>
+  </header>
 </Layout>
+<style>
+  header {
+    display: flex;
+    align-items: start;
+    gap: 2rem;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    height: 284px;
+    #historia {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  h1 {
+    width: 100%;
+    font-size: 5rem;
+    color: var(--link);
+    margin-top: -30px;
+  }
+  p {
+    text-align: center;
+    max-width: 440px;
+    color: var(--link);
+  }
+  #buttonsInit {
+    width: fit-content;
+    display: flex;
+    gap: 20px;
+  }
+</style>

@@ -1,22 +1,50 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import Nav from '../components/Nav.astro'
+import '../styles/global.css'
+import { ClientRouter } from 'astro:transitions'
+---
 
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Tierrita mia</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <button class="buttonExternal"></button>
+  </body>
+</html>
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  main {
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+    padding-top: 120px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .buttonExternal {
+    background-color: var(--secondary);
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    border: none;
+    cursor: pointer;
+  }
+  .buttonExternal:hover {
+    background-color: var(--primary);
+    scale: 1.05;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.336);
+  }
 </style>

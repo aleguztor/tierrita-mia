@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets'
+import screenShot from '../assets/screenshot.png'
+---
+
+<div style="width: fit-content;">
+  <div class="carousel">
+    <div class="carousel-images">
+      <Image loading={'lazy'} src={screenShot} alt="Image 3" />
+      <Image loading={'lazy'} src={screenShot} alt="Image 2" />
+      <Image loading={'lazy'} src={screenShot} alt="Image 3" />
+      <Image loading={'lazy'} src={screenShot} alt="Image 2" />
+    </div>
+    <div class="carousel-buttons">
+      <button id="prev">{'<'}</button>
+      <button id="next">{'>'}</button>
+    </div>
+  </div>
+  <div class="carousel-indicators" id="indicators"></div>
+</div>
+<style>
+  .carousel {
+    width: 100%;
+    position: relative;
+    max-width: 600px;
+    border-radius: 5px;
+    z-index: 5;
+    overflow: hidden;
+  }
+  .carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  .carousel-hover-button-left {
+    box-shadow: inset 50px 0px 100px var(--secondary);
+  }
+  .carousel-hover-button-right {
+    box-shadow: inset -50px 0px 100px var(--secondary);
+  }
+  .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+  .carousel-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    transition: all 200ms ease-out;
+  }
+  .carousel-buttons {
+    button {
+      background: transparent;
+      color: var(--secondary);
+      border: none;
+      height: 400px;
+      font-size: 50px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 300ms;
+    }
+    button:hover {
+      color: var(--primary);
+    }
+  }
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .carousel-indicators {
+    button {
+      background-color: var(--primary);
+      border: none;
+      width: 20px;
+      height: 4px;
+      margin: 0 5px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .active {
+      background-color: var(--link);
+    }
+  }
+</style>
+
+<script>
+  const images = document.querySelector('.carousel-images') as HTMLImageElement
+  const imagesContainer = document.querySelector('.carousel-buttons')
+  if (images) {
+    const totalImages = images.children.length
+    let index = 0
+
+    function updateCarousel() {
+      images.style.transform = `translateX(-${index * 100}%)`
+      document.querySelectorAll('.carousel-indicators button').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index)
+      })
+    }
+    const next = document.getElementById('next')
+    const prev = document.getElementById('prev')
+
+    next!.addEventListener('click', () => {
+      index = (index + 1) % totalImages
+      updateCarousel()
+    })
+    next!.addEventListener('mouseover', () => {
+      imagesContainer!.classList.add('carousel-hover-button-right')
+    })
+    next!.addEventListener('mouseout', () => {
+      imagesContainer!.classList.remove('carousel-hover-button-right')
+    })
+    prev!.addEventListener('mouseover', () => {
+      imagesContainer!.classList.add('carousel-hover-button-left')
+    })
+    prev!.addEventListener('mouseout', () => {
+      imagesContainer!.classList.remove('carousel-hover-button-left')
+    })
+
+    prev!.addEventListener('click', () => {
+      index = (index - 1 + totalImages) % totalImages
+      updateCarousel()
+    })
+
+    setInterval(() => {
+      index = (index + 1) % totalImages
+      updateCarousel()
+    }, 10000)
+
+    const indicators = document.getElementById('indicators')
+    for (let i = 0; i < totalImages; i++) {
+      const button = document.createElement('button')
+      button.addEventListener('click', () => {
+        index = i
+        updateCarousel()
+      })
+
+      indicators!.appendChild(button)
+    }
+    updateCarousel()
+  }
+</script>
