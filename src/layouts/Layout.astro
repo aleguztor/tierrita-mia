@@ -3,6 +3,8 @@ import Footer from '../components/Footer.astro'
 import Nav from '../components/Nav.astro'
 import '../styles/global.css'
 import { ClientRouter } from 'astro:transitions'
+import waIcon from '../assets/waIcon.png'
+import { Image } from 'astro:assets'
 ---
 
 <!doctype html>
@@ -20,7 +22,14 @@ import { ClientRouter } from 'astro:transitions'
     <div id="main">
       <slot />
     </div>
-    <button class="buttonExternal"></button>
+    <a
+      target="_blank"
+      href="https://wa.me/34626591157?text=Hola%20quiero%20hacer%20una%20reserva"
+      id="waButtonLeftBottom"
+      class="buttonExternal"
+    >
+      <Image width={50} style={{ height: '100%', width: 'auto' }} src={waIcon} alt={'whatsapp'} /></a
+    >
     <Footer />
   </body>
 </html>
@@ -35,19 +44,26 @@ import { ClientRouter } from 'astro:transitions'
     padding-right: 20px;
   }
   .buttonExternal {
-    background-color: var(--secondary);
+    background-color: var(--link);
     width: 50px;
     height: 50px;
+    padding: 10px;
     border-radius: 100%;
     position: fixed;
     right: 20px;
-    bottom: 20px;
+    bottom: 30px;
     border: none;
     cursor: pointer;
+    z-index: 10;
   }
   .buttonExternal:hover {
-    background-color: var(--primary);
+    background-color: var(--link-light);
     scale: 1.05;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.336);
+  }
+  @media only screen and (max-width: 774px) {
+    .buttonExternal {
+      display: none;
+    }
   }
 </style>

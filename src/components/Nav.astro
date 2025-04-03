@@ -4,6 +4,7 @@ import { Image } from 'astro:assets'
 
 <nav>
   <carta>
+    <a href="/#localizacion">LOCALIZACIÓN</a>
     <a href="/contacto">CONTACTO</a>
 
     <a href="/">
@@ -11,6 +12,7 @@ import { Image } from 'astro:assets'
     </a>
 
     <a href="/carta">CARTA</a>
+    <a href=""></a>
   </carta>
 </nav>
 
@@ -23,6 +25,10 @@ import { Image } from 'astro:assets'
   }
   a {
     text-decoration: none;
+    width: fit-content;
+  }
+  a:last-child {
+    width: 100px;
   }
   carta {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, var(--secondary) 100%);

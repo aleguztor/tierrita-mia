@@ -3,12 +3,15 @@ interface Props {
   id: string
   type?: 'link' | 'button' | 'icon'
   text?: string
-  link: string
+  link: {
+    link: string
+    newTab: boolean
+  }
 }
 const { id, type = 'button', text, link } = Astro.props
 ---
 
-<a href={link} id={id} class={type}><slot />{text}</a>
+<a href={link.link} target={link.newTab ? '_blank' : '_self'} id={id} class={type}><slot /><p>{text}</p></a>
 
 <style>
   .link {
@@ -23,7 +26,15 @@ const { id, type = 'button', text, link } = Astro.props
     font-size: 20px;
     font-weight: 400;
     color: var(--primary);
-    max-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    p {
+      text-align: center;
+      font-weight: 700;
+    }
   }
   .button:hover {
     background-color: var(--primary);
@@ -33,6 +44,6 @@ const { id, type = 'button', text, link } = Astro.props
 <script define:vars={{ link, id }}>
   const button = document.getElementById(id)
   if (button) {
-    button.addEventListener('click', () => (window.location.href = link))
+    button.addEventListener('click', () => (window.location.href = link.link))
   }
 </script>
