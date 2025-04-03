@@ -3,15 +3,15 @@ import { Image } from 'astro:assets'
 ---
 
 <nav>
-  <menu>
+  <carta>
     <a href="/contacto">CONTACTO</a>
 
     <a href="/">
       <Image width={100} height={100} src="/favicon.svg" alt="logo empresa" />
     </a>
 
-    <a href="/menu">CARTA</a>
-  </menu>
+    <a href="/carta">CARTA</a>
+  </carta>
 </nav>
 
 <style>
@@ -24,7 +24,7 @@ import { Image } from 'astro:assets'
   a {
     text-decoration: none;
   }
-  menu {
+  carta {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, var(--secondary) 100%);
     display: flex;
     gap: 10px;
