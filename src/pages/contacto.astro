@@ -90,10 +90,12 @@ import Layout from '../layouts/Layout.astro'
   button:hover {
     background-color: var(--link-light);
   }
-  h1 {
-    font-size: 2rem;
-    color: var(--link);
-    margin-top: -30px;
-    text-align: center;
+  @media only screen and (max-width: 390px) {
+    h1 {
+      font-size: 2rem;
+      color: var(--link);
+      margin-top: -50px;
+      text-align: center;
+    }
   }
 </style>
