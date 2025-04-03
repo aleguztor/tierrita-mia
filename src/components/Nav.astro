@@ -1,23 +1,18 @@
----
-import { Image } from 'astro:assets'
----
-
 <nav>
-  <carta>
+  <div id="containerNav">
     <a href="/#localizacion">LOCALIZACIÓN</a>
     <a href="/contacto">CONTACTO</a>
-
-    <a href="/">
-      <Image width={100} height={100} src="/favicon.svg" alt="logo empresa" />
+    <a id="logoNav" href="/">
+      <img width={100} height={100} src="/favicon.svg" alt="logo empresa" />
     </a>
-
     <a href="/carta">CARTA</a>
     <a href=""></a>
-  </carta>
+  </div>
 </nav>
 
 <style>
   nav {
+    padding: 0 20px;
     height: 80px;
     position: fixed;
     z-index: 10;
@@ -30,19 +25,72 @@ import { Image } from 'astro:assets'
   a:last-child {
     width: 100px;
   }
-  carta {
+  #containerNav {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, var(--secondary) 100%);
     display: flex;
     gap: 10px;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     max-height: 100%;
+  }
+  @media only screen and (max-width: 515px) {
+    nav {
+      padding: 10px 20px;
+    }
+    #containerNav {
+      flex-direction: column;
+      gap: 5px;
+    }
+    a:last-child {
+      width: fit-content;
+    }
   }
 </style>
 
 <script>
-  const homeLogo = document.getElementById('homeLogo')
-  if (homeLogo) {
-    homeLogo.addEventListener('click', () => (window.location.href = '/'))
+  function getLogoPosition() {
+    const containerNav = document.getElementById('containerNav')
+    const logoNav = document.getElementById('logoNav')
+    if (document.body.offsetWidth <= 515) {
+      if (containerNav && logoNav) {
+        logoNav.remove()
+        const link = document.createElement('a')
+        link.href = '/'
+        link.id = 'logoLit'
+        // Crear la imagen <img>
+        const img = document.createElement('img')
+        img.src = '/favicon.svg'
+        img.alt = 'logo empresa'
+        img.width = 40
+        img.height = 40
+        link.appendChild(img)
+        containerNav.prepend(link)
+      }
+    } else {
+      if (containerNav && !logoNav) {
+        const logoLit = document.getElementById('logoLit')
+        const link = document.createElement('a')
+        if (logoLit) {
+          logoLit.remove()
+        }
+        link.href = '/'
+        link.id = 'logoNav'
+        const img = document.createElement('img')
+        img.src = '/favicon.svg'
+        img.alt = 'logo empresa'
+        img.width = 100
+        img.height = 100
+        link.appendChild(img)
+        const referencia = containerNav.children[1]
+        if (referencia) {
+          referencia.insertAdjacentElement('afterend', link)
+        }
+      }
+    }
   }
+  window.addEventListener('resize', () => {
+    getLogoPosition()
+  })
+  document.addEventListener('astro:page-load', () => getLogoPosition())
 </script>

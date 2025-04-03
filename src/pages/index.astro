@@ -40,8 +40,6 @@ import { Image } from 'astro:assets'
       </div>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6394.664142163913!2d-4.093244600000001!3d36.7385996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7247be9d0d3fcf%3A0x5bb97f649ada83a4!2s29740%20Torre%20del%20Mar%2C%20M%C3%A1laga!5e0!3m2!1ses!2ses!4v1743685991885!5m2!1ses!2ses"
-        width="600"
-        height="450"
         style="border:0;"
         allowfullscreen=""
         loading="lazy"
@@ -105,8 +103,9 @@ import { Image } from 'astro:assets'
       width: fit-content;
     }
     iframe {
+      width: 600px;
       border-radius: 5px;
-      max-height: 300px;
+      height: 300px;
     }
   }
   @media only screen and (max-width: 1111px) {
@@ -116,6 +115,22 @@ import { Image } from 'astro:assets'
         width: auto;
         align-items: center;
       }
+    }
+  }
+
+  @media only screen and (max-width: 515px) {
+    #localizacion {
+      iframe {
+        width: 100%;
+      }
+    }
+  }
+  @media only screen and (max-width: 335px) {
+    h1 {
+      font-size: 2rem;
+      color: var(--link);
+      margin-top: -30px;
+      text-align: center;
     }
   }
 </style>
