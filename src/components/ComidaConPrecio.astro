@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string
+  price: string
+}
+const { title, price } = Astro.props
+---
+
+<div class="comida-con-precio">
+  <p class="title-comida">{title}</p>
+  <p>{price}€</p>
+</div>
+
+<style>
+  .comida-con-precio {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+  .title-comida {
+    font-weight: 600;
+
+    white-space: nowrap;
+  }
+  @media only screen and (max-width: 535px) {
+    p {
+      font-size: 11px;
+    }
+    .title-comida {
+      white-space: initial;
+    }
+  }
+</style>

@@ -1,0 +1,44 @@
+<footer>
+  <section id="links">
+    <div>
+      <h1>TERRA MÍA</h1>
+      <p>Creado por Alejandro Guzmán</p>
+    </div>
+    <div id="linksPage">
+      <a href="/menu">Carta</a>
+      <a href="/contacto">Contacto</a>
+      <a href="/">Home</a>
+    </div>
+  </section>
+  <section id="createdBy"></section>
+</footer>
+
+<style>
+  footer {
+    min-height: 60px;
+    margin-top: 50px;
+    color: var(--secondary);
+    padding: 10px 20px;
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    #links {
+      width: 100%;
+      align-items: center;
+      justify-content: space-around;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      h1 {
+        color: white;
+      }
+      #linksPage {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  }
+</style>

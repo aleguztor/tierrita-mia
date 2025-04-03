@@ -1,4 +1,5 @@
 ---
+import ComidaConPrecio from '../components/ComidaConPrecio.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
@@ -6,16 +7,115 @@ import Layout from '../layouts/Layout.astro'
   <header>
     <h1 transition:name="name-site">TIERRITA MÍA</h1>
   </header>
+  <div id="carta">
+    <section class="carta-left">
+      <div class="comida">
+        <h2>PESCADOS Y MARISCOS</h2>
+        <ComidaConPrecio title="Espetos de sardinas (6 unidades)" price="6,50" />
+        <ComidaConPrecio title="Boquerones fritos" price="8,00" />
+        <ComidaConPrecio title="Calamares a la andaluza" price="10,50" />
+        <ComidaConPrecio title="Gambas a la plancha (200g)" price="12,00" />
+        <ComidaConPrecio title="Pulpo a la brasa con alioli de pimentón" price="14,00" />
+        <ComidaConPrecio title="Zamburiñas a la plancha" price="13,00" />
+        <ComidaConPrecio title="Almejas a la marinera" price="12,00" />
+        <ComidaConPrecio title="Dorada a la sal con guarnición" price="16,00" />
+      </div>
+      <div class="comida">
+        <h2>FRITOS Y TAPAS</h2>
+        <ComidaConPrecio title="Ensaladilla rusa con picos" price="6,50" />
+        <ComidaConPrecio title="Berenjenas con miel de caña" price="7,50" />
+        <ComidaConPrecio title="Croquetas caseras de gambas al pil-pil" price="9,00" />
+        <ComidaConPrecio title="Chopitos fritos" price="10,50" />
+        <ComidaConPrecio title="Patatas bravas con alioli y mojo picón" price="6,50" />
+        <ComidaConPrecio title="Queso frito con mermelada de tomate" price="7,5" />
+      </div>
+    </section>
+    <section class="carta-right">
+      <div class="comida">
+        <h2>ARROCES Y PLATOS PRINCIPALES</h2>
+        <ComidaConPrecio title="Paella de marisco (mín. 2 personas)" price="14,00/pax" />
+        <ComidaConPrecio title="Arroz negro con alioli de ajo asado (mín. 2 personas)" price="13,50/pax" />
+        <ComidaConPrecio title="Fideuá de mariscos (mín. 2 personas)" price="13,00/pax" />
+        <ComidaConPrecio title="Lubina a la espalda con guarnición" price="15,00" />
+        <ComidaConPrecio title="Chuletón de ternera madurada (500g)" price="22,00" />
+        <ComidaConPrecio title="Solomillo de cerdo ibérico al Pedro Ximénez" price="18,00" />
+      </div>
+      <div class="comida">
+        <h2>BEBIDAS</h2>
+        <ComidaConPrecio title="Caña de cerveza" price="2,00" />
+        <ComidaConPrecio title="Doble de cerveza" price="3,50" />
+        <ComidaConPrecio title="Jarra de cerveza (1L)" price="7,50" />
+        <ComidaConPrecio title="Tinto de verano" price="3,00" />
+        <ComidaConPrecio title="Agua mineral" price="1,50" />
+        <ComidaConPrecio title="Refrescos variados" price="2,50" />
+      </div>
+      <div class="comida">
+        <h2>CÓCTELES</h2>
+        <ComidaConPrecio title="Mojito clásico" price="7,00" />
+        <ComidaConPrecio title="Caipirinha" price="7,00" />
+        <ComidaConPrecio title="Piña colada" price="7,50" />
+        <ComidaConPrecio title="Gin-tonic premium" price="8,50" />
+      </div>
+      <div class="comida">
+        <h2>CÓCTELES</h2>
+        <ComidaConPrecio title="Mojito clásico" price="7,00" />
+        <ComidaConPrecio title="Caipirinha" price="7,00" />
+        <ComidaConPrecio title="Piña colada" price="7,50" />
+        <ComidaConPrecio title="Gin-tonic premium" price="8,50" />
+      </div>
+    </section>
+  </div>
 </Layout>
 
 <style>
   header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     h1 {
-      width: 100%;
+      text-align: center;
       font-size: 5rem;
       color: var(--link);
       margin-top: -30px;
-      text-align: center;
+    }
+  }
+  #carta {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-radius: 2px;
+    padding: 20px;
+    background-color: var(--link-light);
+  }
+  .comida {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--primary);
+    width: 100%;
+    p {
+      color: var(--primary);
+    }
+  }
+  .carta-left,
+  .carta-right {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  @media only screen and (max-width: 868px) {
+    .carta-left,
+    .carta-right {
+      width: 80%;
+    }
+  }
+  @media only screen and (max-width: 695px) {
+    .carta-left,
+    .carta-right {
+      width: 100%;
     }
   }
 </style>

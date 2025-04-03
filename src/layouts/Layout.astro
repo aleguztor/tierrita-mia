@@ -1,4 +1,5 @@
 ---
+import Footer from '../components/Footer.astro'
 import Nav from '../components/Nav.astro'
 import '../styles/global.css'
 import { ClientRouter } from 'astro:transitions'
@@ -16,16 +17,18 @@ import { ClientRouter } from 'astro:transitions'
   </head>
   <body>
     <Nav />
-    <main>
+    <div id="main">
       <slot />
-    </main>
+    </div>
     <button class="buttonExternal"></button>
+    <Footer />
   </body>
 </html>
 <style>
-  main {
+  #main {
     width: 100%;
     max-width: 1280px;
+    min-height: 82.2vh;
     margin: auto;
     padding-top: 120px;
     padding-left: 20px;
