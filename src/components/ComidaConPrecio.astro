@@ -2,36 +2,40 @@
 interface Props {
   title: string
   price: string
+  unit?: string
 }
-const { title, price } = Astro.props
+const { title, price, unit = '€' } = Astro.props
 ---
 
-<div class="comida-con-precio">
-  <p class="title-comida">{title}</p>
-  <p>{price}€</p>
-</div>
+<li class="item">
+  <span class="name">{title}</span>
+  <span class="dots" aria-hidden="true"></span>
+  <span class="price">{price}{unit}</span>
+</li>
 
 <style>
-  .comida-con-precio {
+  .item {
     display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
+    gap: 8px;
+    list-style: none;
+    padding: 6px 0;
   }
-  p {
-    font-size: 0.9rem;
-  }
-  .title-comida {
+  .name {
     font-weight: 600;
-
-    white-space: nowrap;
+    font-size: 0.95rem;
   }
-  @media only screen and (max-width: 535px) {
-    p {
-      font-size: 11px;
-    }
-    .title-comida {
-      white-space: initial;
-    }
+  .dots {
+    flex: 1;
+    min-width: 12px;
+    border-bottom: 2px dotted rgba(26, 68, 83, 0.3);
+    transform: translateY(-4px);
+  }
+  .price {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    color: var(--primary);
   }
 </style>

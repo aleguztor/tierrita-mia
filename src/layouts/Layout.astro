@@ -5,13 +5,30 @@ import '../styles/global.css'
 import { ClientRouter } from 'astro:transitions'
 import waIcon from '../assets/waIcon.png'
 import { Image } from 'astro:assets'
+import { SITE } from '../data/site'
+
+interface Props {
+  title?: string
+  description?: string
+}
+const {
+  title,
+  description = 'Tierrita Mía, bar-restaurante en Torre del Mar (Málaga): pescado fresco, espetos, arroces y tapas con el sabor de las recetas de siempre.',
+} = Astro.props
+const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} · Bar y restaurante en Torre del Mar`
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#102c37" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,56 +37,48 @@ import { Image } from 'astro:assets'
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
-    <title>Tierrita mia</title>
+    <title>{fullTitle}</title>
     <ClientRouter />
   </head>
   <body>
     <Nav />
-    <div id="main">
+    <main>
       <slot />
-    </div>
-    <a
-      target="_blank"
-      href="https://wa.me/34626591157?text=Hola%20quiero%20hacer%20una%20reserva"
-      id="waButtonLeftBottom"
-      class="buttonExternal"
-    >
-      <Image width={50} style={{ height: '100%', width: 'auto' }} src={waIcon} alt={'whatsapp'} /></a
-    >
+    </main>
+    <a target="_blank" rel="noopener" href={SITE.whatsappReserva} class="wa-float" aria-label="Reservar por WhatsApp">
+      <Image width={32} height={32} src={waIcon} alt="" />
+      <span>Reservar</span>
+    </a>
     <Footer />
   </body>
 </html>
 <style>
-  #main {
-    width: 100%;
-    max-width: 1280px;
-    min-height: 82.2vh;
-    margin: auto;
-    padding-top: 120px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .buttonExternal {
-    background-color: var(--link);
-    width: 50px;
-    height: 50px;
-    padding: 10px;
-    border-radius: 100%;
+  .wa-float {
     position: fixed;
     right: 20px;
-    bottom: 30px;
-    border: none;
-    cursor: pointer;
-    z-index: 10;
+    bottom: 20px;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px 10px 12px;
+    border-radius: 999px;
+    background: var(--link);
+    color: var(--primary);
+    font-family: var(--font-title);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: var(--shadow);
+    transition:
+      transform 200ms,
+      background-color 200ms;
   }
-  .buttonExternal:hover {
-    background-color: var(--link-light);
-    scale: 1.05;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.336);
+  .wa-float:hover {
+    transform: translateY(-3px);
+    background: white;
   }
-  @media only screen and (max-width: 774px) {
-    .buttonExternal {
-      display: none;
-    }
+  .wa-float img {
+    width: 32px;
+    height: 32px;
   }
 </style>

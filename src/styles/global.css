@@ -1,41 +1,114 @@
 :root {
   --primary: rgb(26, 68, 83);
+  --primary-dark: rgb(16, 44, 55);
   --secondary: rgb(90, 127, 141);
   --link: rgb(255, 237, 209);
   --link-light: rgb(253, 247, 238);
+  --accent: rgb(232, 150, 84);
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(10, 30, 38, 0.25);
+  --font-title: 'Oswald', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
 }
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: 200ms;
 }
 html {
-  background-color: var(--primary);
+  scroll-behavior: smooth;
+  scroll-padding-top: 130px;
 }
-html,
 body {
-  font-family: 'Oswald', sans-serif;
-  margin: 0;
-  width: 100%;
-
+  font-family: var(--font-body);
+  color: var(--link);
+  background: var(--primary-dark);
+  line-height: 1.6;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-html {
-  background-color: transparent;
+main {
+  flex: 1;
 }
-body {
-  background: linear-gradient(180deg, var(--secondary) 55%, white 90%, var(--link) 100%);
+img {
+  max-width: 100%;
+  display: block;
 }
 a {
+  color: inherit;
   text-decoration: none;
-  color: var(--link);
 }
-a:hover {
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.eyebrow {
+  font-family: var(--font-title);
+  letter-spacing: 0.3em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid var(--link);
+  cursor: pointer;
+  transition:
+    background-color 200ms,
+    color 200ms,
+    transform 200ms;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn-primary {
+  background: var(--link);
   color: var(--primary);
 }
-p {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  font-size: 15px;
+.btn-primary:hover {
+  background: white;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--link);
+}
+.btn-ghost:hover {
+  background: var(--link);
+  color: var(--primary);
+}
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }

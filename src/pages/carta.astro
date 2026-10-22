@@ -1,131 +1,188 @@
 ---
 import ComidaConPrecio from '../components/ComidaConPrecio.astro'
 import Layout from '../layouts/Layout.astro'
+
+interface Plato {
+  title: string
+  price: string
+  unit?: string
+}
+interface Seccion {
+  id: string
+  nombre: string
+  platos: Plato[]
+}
+
+const secciones: Seccion[] = [
+  {
+    id: 'pescados',
+    nombre: 'Pescados y mariscos',
+    platos: [
+      { title: 'Espetos de sardinas (6 unidades)', price: '6,50' },
+      { title: 'Boquerones fritos', price: '8,00' },
+      { title: 'Calamares a la andaluza', price: '10,50' },
+      { title: 'Gambas a la plancha (200g)', price: '12,00' },
+      { title: 'Pulpo a la brasa con alioli de pimentón', price: '14,00' },
+      { title: 'Zamburiñas a la plancha', price: '13,00' },
+      { title: 'Almejas a la marinera', price: '12,00' },
+      { title: 'Dorada a la sal con guarnición', price: '16,00' },
+    ],
+  },
+  {
+    id: 'tapas',
+    nombre: 'Fritos y tapas',
+    platos: [
+      { title: 'Ensaladilla rusa con picos', price: '6,50' },
+      { title: 'Berenjenas con miel de caña', price: '7,50' },
+      { title: 'Croquetas caseras de gambas al pil-pil', price: '9,00' },
+      { title: 'Chopitos fritos', price: '10,50' },
+      { title: 'Patatas bravas con alioli y mojo picón', price: '6,50' },
+      { title: 'Queso frito con mermelada de tomate', price: '7,50' },
+    ],
+  },
+  {
+    id: 'arroces',
+    nombre: 'Arroces y principales',
+    platos: [
+      { title: 'Paella de marisco (mín. 2 personas)', price: '14,00', unit: '€/pax' },
+      { title: 'Arroz negro con alioli de ajo asado (mín. 2 personas)', price: '13,50', unit: '€/pax' },
+      { title: 'Fideuá de mariscos (mín. 2 personas)', price: '13,00', unit: '€/pax' },
+      { title: 'Lubina a la espalda con guarnición', price: '15,00' },
+      { title: 'Chuletón de ternera madurada (500g)', price: '22,00' },
+      { title: 'Solomillo de cerdo ibérico al Pedro Ximénez', price: '18,00' },
+    ],
+  },
+  {
+    id: 'bebidas',
+    nombre: 'Bebidas',
+    platos: [
+      { title: 'Caña de cerveza', price: '2,00' },
+      { title: 'Doble de cerveza', price: '3,50' },
+      { title: 'Jarra de cerveza (1L)', price: '7,50' },
+      { title: 'Tinto de verano', price: '3,00' },
+      { title: 'Agua mineral', price: '1,50' },
+      { title: 'Refrescos variados', price: '2,50' },
+    ],
+  },
+  {
+    id: 'cocteles',
+    nombre: 'Cócteles',
+    platos: [
+      { title: 'Mojito clásico', price: '7,00' },
+      { title: 'Caipirinha', price: '7,00' },
+      { title: 'Piña colada', price: '7,50' },
+      { title: 'Gin-tonic premium', price: '8,50' },
+    ],
+  },
+]
 ---
 
-<Layout>
-  <header>
-    <h1 transition:name="name-site">TIERRITA MÍA</h1>
+<Layout
+  title="Carta"
+  description="Carta de Tierrita Mía: pescados y mariscos, fritos y tapas, arroces, bebidas y cócteles en Torre del Mar."
+>
+  <header class="head">
+    <p class="eyebrow">Tierrita Mía</p>
+    <h1>La carta</h1>
   </header>
-  <div id="carta">
-    <section class="carta-left">
-      <div class="comida">
-        <h2>PESCADOS Y MARISCOS</h2>
-        <ComidaConPrecio title="Espetos de sardinas (6 unidades)" price="6,50" />
-        <ComidaConPrecio title="Boquerones fritos" price="8,00" />
-        <ComidaConPrecio title="Calamares a la andaluza" price="10,50" />
-        <ComidaConPrecio title="Gambas a la plancha (200g)" price="12,00" />
-        <ComidaConPrecio title="Pulpo a la brasa con alioli de pimentón" price="14,00" />
-        <ComidaConPrecio title="Zamburiñas a la plancha" price="13,00" />
-        <ComidaConPrecio title="Almejas a la marinera" price="12,00" />
-        <ComidaConPrecio title="Dorada a la sal con guarnición" price="16,00" />
-      </div>
-      <div class="comida">
-        <h2>FRITOS Y TAPAS</h2>
-        <ComidaConPrecio title="Ensaladilla rusa con picos" price="6,50" />
-        <ComidaConPrecio title="Berenjenas con miel de caña" price="7,50" />
-        <ComidaConPrecio title="Croquetas caseras de gambas al pil-pil" price="9,00" />
-        <ComidaConPrecio title="Chopitos fritos" price="10,50" />
-        <ComidaConPrecio title="Patatas bravas con alioli y mojo picón" price="6,50" />
-        <ComidaConPrecio title="Queso frito con mermelada de tomate" price="7,5" />
-      </div>
-    </section>
-    <section class="carta-right">
-      <div class="comida">
-        <h2>ARROCES Y PLATOS PRINCIPALES</h2>
-        <ComidaConPrecio title="Paella de marisco (mín. 2 personas)" price="14,00/pax" />
-        <ComidaConPrecio title="Arroz negro con alioli de ajo asado (mín. 2 personas)" price="13,50/pax" />
-        <ComidaConPrecio title="Fideuá de mariscos (mín. 2 personas)" price="13,00/pax" />
-        <ComidaConPrecio title="Lubina a la espalda con guarnición" price="15,00" />
-        <ComidaConPrecio title="Chuletón de ternera madurada (500g)" price="22,00" />
-        <ComidaConPrecio title="Solomillo de cerdo ibérico al Pedro Ximénez" price="18,00" />
-      </div>
-      <div class="comida">
-        <h2>BEBIDAS</h2>
-        <ComidaConPrecio title="Caña de cerveza" price="2,00" />
-        <ComidaConPrecio title="Doble de cerveza" price="3,50" />
-        <ComidaConPrecio title="Jarra de cerveza (1L)" price="7,50" />
-        <ComidaConPrecio title="Tinto de verano" price="3,00" />
-        <ComidaConPrecio title="Agua mineral" price="1,50" />
-        <ComidaConPrecio title="Refrescos variados" price="2,50" />
-      </div>
-      <div class="comida">
-        <h2>CÓCTELES</h2>
-        <ComidaConPrecio title="Mojito clásico" price="7,00" />
-        <ComidaConPrecio title="Caipirinha" price="7,00" />
-        <ComidaConPrecio title="Piña colada" price="7,50" />
-        <ComidaConPrecio title="Gin-tonic premium" price="8,50" />
-      </div>
-      <div class="comida">
-        <h2>CÓCTELES</h2>
-        <ComidaConPrecio title="Mojito clásico" price="7,00" />
-        <ComidaConPrecio title="Caipirinha" price="7,00" />
-        <ComidaConPrecio title="Piña colada" price="7,50" />
-        <ComidaConPrecio title="Gin-tonic premium" price="8,50" />
-      </div>
-    </section>
+
+  <nav class="tabs" aria-label="Categorías de la carta">
+    <div class="container tabs-row">
+      {secciones.map((s) => <a href={`#${s.id}`}>{s.nombre}</a>)}
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="paper">
+      {
+        secciones.map((s) => (
+          <section id={s.id} class="seccion">
+            <h2>{s.nombre}</h2>
+            <ul>
+              {s.platos.map((p) => (
+                <ComidaConPrecio {...p} />
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+    <p class="note">¿Alergias o intolerancias? Consúltanos antes de pedir.</p>
   </div>
 </Layout>
 
 <style>
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    h1 {
-      text-align: center;
-      font-size: 5rem;
-      color: var(--link);
-      margin-top: -30px;
-    }
+  .head {
+    text-align: center;
+    padding: 56px 20px 28px;
   }
-  #carta {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-    border-radius: 2px;
-    padding: 20px;
-    background-color: var(--link-light);
+  .head h1 {
+    font-size: clamp(2.8rem, 9vw, 5rem);
+    margin-top: 6px;
   }
-  .comida {
+  .tabs {
+    position: sticky;
+    top: 68px;
+    z-index: 10;
+    background: rgba(16, 44, 55, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 237, 209, 0.12);
+  }
+  .tabs-row {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 4px;
+    gap: 10px;
+    overflow-x: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+  }
+  .tabs-row a {
+    flex: none;
+    padding: 6px 16px;
+    border: 1px solid rgba(255, 237, 209, 0.4);
+    border-radius: 999px;
+    font-family: var(--font-title);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition:
+      background-color 200ms,
+      color 200ms;
+  }
+  .tabs-row a:hover {
+    background: var(--link);
     color: var(--primary);
-    width: 100%;
-    p {
-      color: var(--primary);
-    }
   }
-  .carta-left,
-  .carta-right {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  .paper {
+    margin-top: 36px;
+    padding: 40px;
+    background: var(--link-light);
+    color: var(--primary);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    columns: 2;
+    column-gap: 56px;
   }
-  @media only screen and (max-width: 868px) {
-    .carta-left,
-    .carta-right {
-      width: 80%;
-    }
+  .seccion {
+    break-inside: avoid;
+    margin-bottom: 36px;
   }
-  @media only screen and (max-width: 695px) {
-    .carta-left,
-    .carta-right {
-      width: 100%;
-    }
+  .seccion h2 {
+    font-size: 1.5rem;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
   }
-  @media only screen and (max-width: 335px) {
-    header {
-      h1 {
-        font-size: 2rem;
-        color: var(--link);
-        margin-top: -30px;
-        text-align: center;
-      }
+  .note {
+    text-align: center;
+    margin: 24px 0;
+    color: var(--secondary);
+    font-size: 0.9rem;
+  }
+  @media (max-width: 820px) {
+    .paper {
+      columns: 1;
+      padding: 24px 20px;
     }
   }
 </style>
